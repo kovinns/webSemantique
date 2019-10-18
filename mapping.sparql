@@ -12,23 +12,26 @@ CONSTRUCT {
             wdws:P141           ?status;
             wdws:P225           ?commonName;
             foaf:primaryTopic   ?specie_ID.
-  ?family   rdfs:label          ?familyName;
+  ?family   a                   dbo:family;
+            rdfs:label          ?familyName;
             rdf:category        ?group.
-  ?group    rdfs:label          ?groupName;
+  ?group    a                   rdf:category;
+            rdfs:label          ?groupName;
             rdfs:range          ?type.
-  ?type     rdfs:label          ?typeName;
+  ?type     a                   rdfs:range;
+            rdfs:label          ?typeName;
 }
 FROM <file:datasetWebSemantic.csv>
 WHERE {
   BIND (URI(CONCAT('http://dbpedia.org/ontology/species/', ?Scientific_name)) AS ?URI)
   BIND (xsd:string(?Scientific_name) AS ?scientificName)
-  BIND (IRI(?Family) AS ?family)
+  BIND (URI(CONCAT('http://dbpedia.org/ontology/family/', ?Family)) AS ?family)
   BIND (xsd:string(?Family) AS ?familyName)
   BIND (xsd:string(?Status) AS ?status)
-  BIND (IRI(?Group) AS ?group)
+  BIND (URI(CONCAT('http://www.w3.org/1999/02/22-rdf-syntax-ns#category/', ?Group)) AS ?group)
   BIND (xsd:string(?Group) AS ?groupName)
   BIND (xsd:string(?Common_name) AS ?commonName)
-  BIND (IRI(?Type) AS ?type)
+  BIND (URI(CONCAT('http://www.w3.org/2000/01/rdf-schema#range/', ?Type)) AS ?type)
   BIND (xsd:string(?Type) AS ?typeName)
   BIND (xsd:string(?Specie_ID) AS ?specie_ID)
 }
