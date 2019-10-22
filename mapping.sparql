@@ -4,6 +4,7 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX wdws: <http://www.wikidata.org/wiki/Special:EntityData/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX ex: <http://www.ex.org/>
 
 CONSTRUCT {
   ?URI      a                   dbo:species;
@@ -11,14 +12,15 @@ CONSTRUCT {
             dbo:family          ?family;
             wdws:P141           ?status;
             wdws:P225           ?commonName;
-            foaf:primaryTopic   ?specie_ID.
+            foaf:primaryTopic   ?specie_ID;
+            dbo:country         ?country.
   ?family   a                   dbo:family;
             rdfs:label          ?familyName;
-            rdf:category        ?group.
-  ?group    a                   rdf:category;
+            ex:group        ?group.
+  ?group    a                   ex:group;
             rdfs:label          ?groupName;
-            rdfs:range          ?type.
-  ?type     a                   rdfs:range;
+            ex:type          ?type.
+  ?type     a                   ex:type;
             rdfs:label          ?typeName;
 }
 FROM <file:datasetWebSemantic.csv>
@@ -28,10 +30,11 @@ WHERE {
   BIND (URI(CONCAT('http://dbpedia.org/ontology/family/', ?Family)) AS ?family)
   BIND (xsd:string(?Family) AS ?familyName)
   BIND (xsd:string(?Status) AS ?status)
-  BIND (URI(CONCAT('http://www.w3.org/1999/02/22-rdf-syntax-ns#category/', ?Group)) AS ?group)
+  BIND (IRI(?Group) AS ?group)
   BIND (xsd:string(?Group) AS ?groupName)
   BIND (xsd:string(?Common_name) AS ?commonName)
-  BIND (URI(CONCAT('http://www.w3.org/2000/01/rdf-schema#range/', ?Type)) AS ?type)
+  BIND (IRI(?Type) AS ?type)
   BIND (xsd:string(?Type) AS ?typeName)
   BIND (xsd:string(?Specie_ID) AS ?specie_ID)
+  BIND (xsd:string(?Country) AS ?country)
 }
