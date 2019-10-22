@@ -16,12 +16,10 @@ CONSTRUCT {
             dbo:country         ?country.
   ?family   a                   dbo:family;
             rdfs:label          ?familyName;
-            ex:group        ?group.
-  ?group    a                   ex:group;
-            rdfs:label          ?groupName;
-            ex:type          ?type.
-  ?type     a                   ex:type;
-            rdfs:label          ?typeName;
+            ex:group            ?group.
+  ?group    rdfs:label          ?groupName;
+            ex:type             ?type.
+  ?type     rdfs:label          ?typeName;
 }
 FROM <file:datasetWebSemantic.csv>
 WHERE {
