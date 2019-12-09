@@ -1,0 +1,604 @@
+@prefix : <http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wdws: <http://www.wikidata.org/wiki/Special:EntityData/> .
+@base <http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2> .
+
+<http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#familyGroup
+:familyGroup rdf:type owl:ObjectProperty ;
+             rdfs:domain :Family ;
+             rdfs:range :Group .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#groupType
+:groupType rdf:type owl:ObjectProperty ;
+           rdfs:domain :Group ;
+           rdfs:range :GroupType .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#speciesFamily
+:speciesFamily rdf:type owl:ObjectProperty ;
+               rdfs:domain :Species ;
+               rdfs:range :Family .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://dbpedia.org/ontology/country
+<http://dbpedia.org/ontology/country> rdf:type owl:DatatypeProperty ;
+                                      rdfs:domain :Species ;
+                                      rdfs:range xsd:string .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#label
+rdfs:label rdf:type owl:DatatypeProperty ;
+           rdfs:range xsd:string .
+
+
+###  http://www.wikidata.org/wiki/Special:EntityData/P141
+wdws:P141 rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Species ;
+          rdfs:range xsd:string .
+
+
+###  http://www.wikidata.org/wiki/Special:EntityData/P225
+wdws:P225 rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Species ;
+          rdfs:range xsd:string .
+
+
+###  http://xmlns.com/foaf/0.1/primaryTopic
+<http://xmlns.com/foaf/0.1/primaryTopic> rdf:type owl:DatatypeProperty ;
+                                         rdfs:domain :Species ;
+                                         rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#AmphibiansFamily
+:AmphibiansFamily rdf:type owl:Class ;
+                  rdfs:subClassOf :AnimalFamily ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :familyGroup ;
+                                    owl:hasValue :Amphibians
+                                  ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#AmphibiansSpecies
+:AmphibiansSpecies rdf:type owl:Class ;
+                   rdfs:subClassOf :AnimalSpecies ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :speciesFamily ;
+                                     owl:allValuesFrom :AmphibiansFamily
+                                   ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#AnimalFamily
+:AnimalFamily rdf:type owl:Class ;
+              rdfs:subClassOf :Family ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :familyGroup ;
+                                owl:allValuesFrom :AnimalGroup
+                              ] ;
+              owl:disjointWith :PlantFamily .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#AnimalGroup
+:AnimalGroup rdf:type owl:Class ;
+             rdfs:subClassOf :Group ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :groupType ;
+                               owl:hasValue :Animal
+                             ] ;
+             owl:disjointWith :PlantGroup .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#AnimalSpecies
+:AnimalSpecies rdf:type owl:Class ;
+               rdfs:subClassOf :Species ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :speciesFamily ;
+                                 owl:allValuesFrom :AnimalFamily
+                               ] ;
+               owl:disjointWith :PlantSpecies .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#ArachnidsFamily
+:ArachnidsFamily rdf:type owl:Class ;
+                 rdfs:subClassOf :AnimalFamily ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :familyGroup ;
+                                   owl:hasValue :Arachnids
+                                 ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#ArachnidsSpecies
+:ArachnidsSpecies rdf:type owl:Class ;
+                  rdfs:subClassOf :AnimalSpecies ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :speciesFamily ;
+                                    owl:allValuesFrom :ArachnidsFamily
+                                  ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#AsteraceaeSpecies
+:AsteraceaeSpecies rdf:type owl:Class ;
+                   rdfs:subClassOf :Flowering_PlantSpecies ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :speciesFamily ;
+                                     owl:hasValue :Asteraceae
+                                   ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#BirdsFamily
+:BirdsFamily rdf:type owl:Class ;
+             rdfs:subClassOf :AnimalFamily ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :familyGroup ;
+                               owl:hasValue :Birds
+                             ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#BirdsSpecies
+:BirdsSpecies rdf:type owl:Class ;
+              rdfs:subClassOf :AnimalSpecies ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :speciesFamily ;
+                                owl:allValuesFrom :BirdsFamily
+                              ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#ClamsFamily
+:ClamsFamily rdf:type owl:Class ;
+             rdfs:subClassOf :AnimalFamily ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :familyGroup ;
+                               owl:hasValue :Clams
+                             ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#ClamsSpecies
+:ClamsSpecies rdf:type owl:Class ;
+              rdfs:subClassOf :AnimalSpecies ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :speciesFamily ;
+                                owl:allValuesFrom :ClamsFamily
+                              ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#CrustaceansFamily
+:CrustaceansFamily rdf:type owl:Class ;
+                   rdfs:subClassOf :AnimalFamily ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :familyGroup ;
+                                     owl:hasValue :Crustaceans
+                                   ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#CrustaceansSpecies
+:CrustaceansSpecies rdf:type owl:Class ;
+                    rdfs:subClassOf :AnimalSpecies ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :speciesFamily ;
+                                      owl:allValuesFrom :CrustaceansFamily
+                                    ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#FabaceaeSpecies
+:FabaceaeSpecies rdf:type owl:Class ;
+                 rdfs:subClassOf :Flowering_PlantSpecies ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :speciesFamily ;
+                                   owl:hasValue :Fabaceae
+                                 ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Family
+:Family rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#FishesFamily
+:FishesFamily rdf:type owl:Class ;
+              rdfs:subClassOf :AnimalFamily ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :familyGroup ;
+                                owl:hasValue :Fishes
+                              ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#FishesSpecies
+:FishesSpecies rdf:type owl:Class ;
+               rdfs:subClassOf :AnimalSpecies ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :speciesFamily ;
+                                 owl:allValuesFrom :FishesFamily
+                               ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Flowering_PlantFamily
+:Flowering_PlantFamily rdf:type owl:Class ;
+                       rdfs:subClassOf :PlantFamily .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Flowering_PlantSpecies
+:Flowering_PlantSpecies rdf:type owl:Class ;
+                        rdfs:subClassOf :PlantSpecies ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :speciesFamily ;
+                                          owl:allValuesFrom :Flowering_PlantFamily
+                                        ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Group
+:Group rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#GroupType
+:GroupType rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#HydrophyllaceaeSpecies
+:HydrophyllaceaeSpecies rdf:type owl:Class ;
+                        rdfs:subClassOf :Flowering_PlantSpecies ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :speciesFamily ;
+                                          owl:hasValue :Hydrophyllaceae
+                                        ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#InsectsFamily
+:InsectsFamily rdf:type owl:Class ;
+               rdfs:subClassOf :AnimalFamily ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :familyGroup ;
+                                 owl:hasValue :Insects
+                               ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#InsectsSpecies
+:InsectsSpecies rdf:type owl:Class ;
+                rdfs:subClassOf :AnimalSpecies ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :speciesFamily ;
+                                  owl:allValuesFrom :InsectsFamily
+                                ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#MammalsFamily
+:MammalsFamily rdf:type owl:Class ;
+               rdfs:subClassOf :AnimalFamily ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :familyGroup ;
+                                 owl:hasValue :Mammals
+                               ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#MammalsSpecies
+:MammalsSpecies rdf:type owl:Class ;
+                rdfs:subClassOf :AnimalSpecies ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :speciesFamily ;
+                                  owl:allValuesFrom :MammalsFamily
+                                ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#PlantFamily
+:PlantFamily rdf:type owl:Class ;
+             rdfs:subClassOf :Family ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :familyGroup ;
+                               owl:allValuesFrom :PlantGroup
+                             ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#PlantGroup
+:PlantGroup rdf:type owl:Class ;
+            rdfs:subClassOf :Group ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :groupType ;
+                              owl:hasValue :Plant
+                            ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#PlantSpecies
+:PlantSpecies rdf:type owl:Class ;
+              rdfs:subClassOf :Species ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :speciesFamily ;
+                                owl:allValuesFrom :PlantFamily
+                              ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#ReptilesFamily
+:ReptilesFamily rdf:type owl:Class ;
+                rdfs:subClassOf :AnimalFamily ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :familyGroup ;
+                                  owl:hasValue :Reptiles
+                                ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#ReptilesSpecies
+:ReptilesSpecies rdf:type owl:Class ;
+                 rdfs:subClassOf :AnimalSpecies ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :speciesFamily ;
+                                   owl:allValuesFrom :ReptilesFamily
+                                 ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#SnailsFamily
+:SnailsFamily rdf:type owl:Class ;
+              rdfs:subClassOf :AnimalFamily ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :familyGroup ;
+                                owl:hasValue :Snails
+                              ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#SnailsSpecies
+:SnailsSpecies rdf:type owl:Class ;
+               rdfs:subClassOf :AnimalSpecies ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :speciesFamily ;
+                                 owl:allValuesFrom :SnailsFamily
+                               ] .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Species
+:Species rdf:type owl:Class .
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Amphibians
+:Amphibians rdf:type owl:NamedIndividual ,
+                     :AnimalGroup ;
+            rdfs:label "Amphibians"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Animal
+:Animal rdf:type owl:NamedIndividual ,
+                 :GroupType ;
+        rdfs:label "Animal"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Arachnids
+:Arachnids rdf:type owl:NamedIndividual ,
+                    :AnimalGroup ;
+           rdfs:label "Arachnids"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Asteraceae
+:Asteraceae rdf:type owl:NamedIndividual ,
+                     :Flowering_PlantFamily ;
+            :familyGroup :Flowering_Plants ;
+            rdfs:label "Asteraceae"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Birds
+:Birds rdf:type owl:NamedIndividual ,
+                :AnimalGroup ;
+       rdfs:label "Birds"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Canavalia_napaliensis
+:Canavalia_napaliensis rdf:type owl:NamedIndividual ,
+                                :FabaceaeSpecies ;
+                       <http://dbpedia.org/ontology/country> "United_States"^^xsd:string ;
+                       rdfs:label "Canavalia_napaliensis"^^xsd:string ;
+                       wdws:P141 "Endangered"^^xsd:string ;
+                       wdws:P225 "Awikiwiki"^^xsd:string ;
+                       <http://xmlns.com/foaf/0.1/primaryTopic> "https://ecos.fws.gov//ecp/species/1325"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Clams
+:Clams rdf:type owl:NamedIndividual ,
+                :AnimalGroup ;
+       rdfs:label "Clams"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Crustaceans
+:Crustaceans rdf:type owl:NamedIndividual ,
+                      :AnimalGroup ;
+             rdfs:label "Crustaceans"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Erigeron_decumbens
+:Erigeron_decumbens rdf:type owl:NamedIndividual ,
+                             :AsteraceaeSpecies ;
+                    <http://dbpedia.org/ontology/country> "United_States"^^xsd:string ;
+                    rdfs:label "Erigoeron_decumbens"^^xsd:string ;
+                    wdws:P141 "Endangered"^^xsd:string ;
+                    wdws:P225 "Willamette_daisy"^^xsd:string ;
+                    <http://xmlns.com/foaf/0.1/primaryTopic> "https://ecos.fws.gov//ecp/species/6270"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Eriodictyon_capitatum
+:Eriodictyon_capitatum rdf:type owl:NamedIndividual ,
+                                :HydrophyllaceaeSpecies ;
+                       <http://dbpedia.org/ontology/country> "United_States"^^xsd:string ;
+                       rdfs:label "Eriodictyon_capitatum"^^xsd:string ;
+                       wdws:P141 "Endangered"^^xsd:string ;
+                       wdws:P225 "Lompoc_yerba_santa"^^xsd:string ;
+                       <http://xmlns.com/foaf/0.1/primaryTopic> "https://ecos.fws.gov//ecp/species/364"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Fabaceae
+:Fabaceae rdf:type owl:NamedIndividual ,
+                   :Flowering_PlantFamily ;
+          :familyGroup :Flowering_Plants ;
+          rdfs:label "Fabaceae"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Fishes
+:Fishes rdf:type owl:NamedIndividual ,
+                 :AnimalGroup ;
+        rdfs:label "Fishes"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Flowering_Plants
+:Flowering_Plants rdf:type owl:NamedIndividual ,
+                           :PlantGroup ;
+                  rdfs:label "Flowering_Plant"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Hydrophyllaceae
+:Hydrophyllaceae rdf:type owl:NamedIndividual ,
+                          :Flowering_PlantFamily ;
+                 :familyGroup :Flowering_Plants ;
+                 rdfs:label "Hydrophyllaceae"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Insects
+:Insects rdf:type owl:NamedIndividual ,
+                  :AnimalGroup ;
+         rdfs:label "Insects"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Mammals
+:Mammals rdf:type owl:NamedIndividual ,
+                  :AnimalGroup ;
+         rdfs:label "Mammals"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Mucuna_sloanei_var._persericea
+:Mucuna_sloanei_var._persericea rdf:type owl:NamedIndividual ,
+                                         :FabaceaeSpecies ;
+                                <http://dbpedia.org/ontology/country> "United_States"^^xsd:string ;
+                                rdfs:label "Mucuna_sloanei_var._persericea"^^xsd:string ;
+                                wdws:P141 "Endangered"^^xsd:string ;
+                                wdws:P225 "sea_bean"^^xsd:string ;
+                                <http://xmlns.com/foaf/0.1/primaryTopic> "https://ecos.fws.gov//ecp/species/9244"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Phacelia_submutica
+:Phacelia_submutica rdf:type owl:NamedIndividual ,
+                             :HydrophyllaceaeSpecies ;
+                    <http://dbpedia.org/ontology/country> "United_States"^^xsd:string ;
+                    rdfs:label "Phacelia_submutica"^^xsd:string ;
+                    wdws:P141 "DeBeque_phacelia"^^xsd:string ,
+                              "Threatened"^^xsd:string ;
+                    <http://xmlns.com/foaf/0.1/primaryTopic> "https://ecos.fws.gov//ecp/species/4639"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Plant
+:Plant rdf:type owl:NamedIndividual ,
+                :GroupType ;
+       rdfs:label "Plant"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Reptiles
+:Reptiles rdf:type owl:NamedIndividual ,
+                   :AnimalGroup ;
+          rdfs:label "Reptiles"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Sesbania_tomentosa
+:Sesbania_tomentosa rdf:type owl:NamedIndividual ,
+                             :FabaceaeSpecies ;
+                    <http://dbpedia.org/ontology/country> "United_States"^^xsd:string ;
+                    rdfs:label "Sesbania_tomentosa"^^xsd:string ;
+                    wdws:P141 "Endangered"^^xsd:string ;
+                    wdws:P225 "Ohai"^^xsd:string ;
+                    <http://xmlns.com/foaf/0.1/primaryTopic> "https://ecos.fws.gov//ecp/species/8453"^^xsd:string .
+
+
+###  http://www.semanticweb.org/kowalski/ontologies/2019/11/untitled-ontology-2#Snails
+:Snails rdf:type owl:NamedIndividual ,
+                 :AnimalGroup ;
+        rdfs:label "Snails"^^xsd:string .
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AmphibiansFamily
+                :ArachnidsFamily
+                :BirdsFamily
+                :ClamsFamily
+                :CrustaceansFamily
+                :FishesFamily
+                :InsectsFamily
+                :MammalsFamily
+                :ReptilesFamily
+                :SnailsFamily
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AmphibiansSpecies
+                :ArachnidsSpecies
+                :BirdsSpecies
+                :ClamsSpecies
+                :CrustaceansSpecies
+                :FishesSpecies
+                :InsectsSpecies
+                :MammalsSpecies
+                :ReptilesSpecies
+                :SnailsSpecies
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AsteraceaeSpecies
+                :FabaceaeSpecies
+                :HydrophyllaceaeSpecies
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Family
+                :Group
+                :GroupType
+                :Species
+              )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :Amphibians
+                        :Animal
+                        :Arachnids
+                        :Asteraceae
+                        :Birds
+                        :Canavalia_napaliensis
+                        :Clams
+                        :Crustaceans
+                        :Erigeron_decumbens
+                        :Eriodictyon_capitatum
+                        :Fabaceae
+                        :Fishes
+                        :Flowering_Plants
+                        :Hydrophyllaceae
+                        :Insects
+                        :Mammals
+                        :Mucuna_sloanei_var._persericea
+                        :Phacelia_submutica
+                        :Plant
+                        :Reptiles
+                        :Sesbania_tomentosa
+                        :Snails
+                      )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
